@@ -1,0 +1,37 @@
+{"timestamp":"2025-11-11T15:27:30.5451888Z","level":"INFO","message":"Visiblaze Agent v0.1.0 starting"}
+{"timestamp":"2025-11-11T15:27:30.5470161Z","level":"INFO","message":"Running collection once"}
+{"timestamp":"2025-11-11T15:27:30.7310614Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:27:30.7310614Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:29:28.7212852Z","level":"INFO","message":"Visiblaze Agent v0.1.0 starting"}
+{"timestamp":"2025-11-11T15:29:28.7212852Z","level":"INFO","message":"Running collection once"}
+{"timestamp":"2025-11-11T15:29:28.8232216Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:29:28.8238335Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:34:54.1460384Z","level":"INFO","message":"Visiblaze Agent v0.1.0 starting"}
+{"timestamp":"2025-11-11T15:34:54.1465799Z","level":"ERROR","message":"Failed to load config: read config: open /etc/visiblaze-agent/config.yaml: The system cannot find the path specified."}
+{"timestamp":"2025-11-11T15:35:13.3356823Z","level":"INFO","message":"Visiblaze Agent v0.1.0 starting"}
+{"timestamp":"2025-11-11T15:35:13.3361993Z","level":"INFO","message":"Starting scheduler (interval: 1 minutes)"}
+{"timestamp":"2025-11-11T15:35:13.4772461Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:36:11.7720287Z","level":"INFO","message":"Shutdown signal received"}
+{"timestamp":"2025-11-11T15:36:11.7720287Z","level":"INFO","message":"Agent stopped"}
+{"timestamp":"2025-11-11T15:36:14.3044808Z","level":"INFO","message":"Visiblaze Agent v0.1.0 starting"}
+{"timestamp":"2025-11-11T15:36:14.3044808Z","level":"INFO","message":"Starting scheduler (interval: 1 minutes)"}
+{"timestamp":"2025-11-11T15:36:14.4188387Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:37:15.4625808Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:38:14.5011956Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:39:14.4216853Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:40:14.4970269Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:41:14.5816732Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:42:14.5385047Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:43:14.4358248Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:44:14.5326275Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:45:14.6127474Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:46:15.1194182Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:47:14.5060854Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:48:14.4802407Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:49:14.4232865Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:50:14.4965197Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:51:14.4888271Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:52:14.4288232Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:53:14.5455618Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:54:15.115374Z","level":"INFO","message":"Collection complete"}
+{"timestamp":"2025-11-11T15:55:14.8023509Z","level":"INFO","message":"Collection complete"}

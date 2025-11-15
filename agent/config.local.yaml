@@ -1,0 +1,6 @@
+api_base_url: "http://localhost:3001"
+api_key: "localtest"
+collection_interval_minutes: 1
+disable_ipv6_check: true
+
+distro_hint: "linux"

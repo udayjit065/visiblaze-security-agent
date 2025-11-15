@@ -1,0 +1,12 @@
+/* Styles for CIS results table */
+.cis-results { padding: 12px; }
+.cis-summary { display: flex; gap: 12px; margin-bottom: 12px; }
+.summary-item { padding: 8px 12px; border-radius: 4px; background:#f3f3f3; }
+.summary-item.pass { border-left: 4px solid #28a745; }
+.summary-item.fail { border-left: 4px solid #dc3545; }
+.summary-item.manual { border-left: 4px solid #ffc107; }
+.cis-table .status-badge { padding: 4px 8px; border-radius: 4px; color: #fff; }
+.status-badge.pass { background: #28a745; }
+.status-badge.fail { background: #dc3545; }
+.status-badge.manual { background: #6c757d; }
+.evidence-row td { background: #fafafa; }

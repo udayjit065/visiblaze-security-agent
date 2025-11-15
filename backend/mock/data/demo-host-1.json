@@ -1,0 +1,19 @@
+{
+  "host": {
+    "host_id": "demo-host-1",
+    "hostname": "demo-machine",
+    "os_id": "ubuntu",
+    "os_version": "22.04",
+    "kernel": "5.15.0-100-generic",
+    "ip_addresses": ["192.168.1.10"],
+    "agent_version": "0.1.0",
+    "last_seen": "2025-11-11T00:00:00Z",
+    "first_seen": "2025-11-11T00:00:00Z"
+  },
+  "packages": [
+    {"name":"bash","version":"5.1-" ,"arch":"amd64","manager":"dpkg","source":"debian"}
+  ],
+  "cis_results": [
+    {"check_id":"P1","title":"Password complexity enforced","status":"pass","evidence":{},"ts":"2025-11-11T00:00:00Z"}
+  ]
+}

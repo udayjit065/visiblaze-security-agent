@@ -1,0 +1,20 @@
+# Visiblaze Security Agent Configuration
+# This file contains the configuration for the visiblaze-agent daemon
+
+# API endpoint where compliance data will be sent
+api_base_url: "https://api.visiblaze.io/v1"
+
+# API key for authentication
+# Generate a secure key and store it securely
+api_key: "your-api-key-here"
+
+# Collection interval in minutes
+# How often to collect and send compliance data
+collection_interval_minutes: 15
+
+# Linux distribution hint for better OS detection
+# Options: ubuntu, debian, centos, rhel, alpine, fedora
+distro_hint: "ubuntu"
+
+# Disable IPv6 check if not applicable to your environment
+disable_ipv6_check: false

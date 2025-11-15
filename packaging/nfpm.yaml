@@ -1,0 +1,41 @@
+name: visiblaze-agent
+arch: amd64
+platform: linux
+version: 0.1.0
+section: utils
+priority: optional
+maintainer: Visiblaze Inc <support@visiblaze.io>
+description: |
+  Lightweight Linux security compliance agent.
+  Collects packages and runs 12 CIS Level 1 checks.
+homepage: https://visiblaze.io
+license: MIT
+
+contents:
+  - src: dist/visiblaze-agent
+    dst: /usr/bin/visiblaze-agent
+    type: file
+    
+    
+  - src: agent/config.example.yaml
+    dst: /etc/visiblaze-agent/config.yaml
+    type: config
+    
+    
+  - src: agent/systemd/visiblaze-agent.service
+    dst: /lib/systemd/system/visiblaze-agent.service
+    type: file
+    
+
+# scripts:
+#   preinstall: |
+#     #!/bin/bash
+#     id visiblaze-agent &>/dev/null || useradd -r -s /bin/false visiblaze-agent
+#     mkdir -p /var/lib/visiblaze-agent /var/log/visiblaze-agent
+#     chown visiblaze-agent:visiblaze-agent /var/lib/visiblaze-agent /var/log/visiblaze-agent
+    
+#   postinstall: |
+#     #!/bin/bash
+#     systemctl daemon-reload
+#     systemctl enable visiblaze-agent
+#     systemctl restart visiblaze-agent || true
