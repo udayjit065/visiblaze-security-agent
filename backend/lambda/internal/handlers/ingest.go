@@ -14,12 +14,12 @@ import (
 	"github.com/visiblaze/sec-agent/backend/lambda/internal/models"
 )
 
-func IngestHandler(ctx context.Context, req events.APIGatewayProxyRequest,
-	client *dynamodb.Client, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func IngestHandler(ctx context.Context, req events.APIGatewayV2HTTPRequest,
+	client *dynamodb.Client, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 
 	var payload models.IngestPayload
 	if err := json.Unmarshal([]byte(req.Body), &payload); err != nil {
-		return events.APIGatewayProxyResponse{
+		return events.APIGatewayV2HTTPResponse{
 			StatusCode: 400,
 			Headers:    headers,
 			Body:       fmt.Sprintf(`{"error":"Invalid JSON: %s"}`, err.Error()),
@@ -59,7 +59,7 @@ func IngestHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 		ExpressionAttributeValues: exprValues,
 	})
 	if err != nil {
-		return events.APIGatewayProxyResponse{
+		return events.APIGatewayV2HTTPResponse{
 			StatusCode: 500,
 			Headers:    headers,
 			Body:       fmt.Sprintf(`{"error":"Failed to store host: %s"}`, err.Error()),
@@ -122,7 +122,7 @@ func IngestHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 		})
 	}
 
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       `{"status":"ok"}`,

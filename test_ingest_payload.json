@@ -1,0 +1,8 @@
+{
+  "path": "/ingest",
+  "httpMethod": "POST",
+  "headers": {
+    "X-API-Key": "MXw56P]-N?V>)?>DfN=ZScYR=3(CT-sQ"
+  },
+  "body": "{\"host\":{\"host_id\":\"test-host-123\",\"hostname\":\"test-host\",\"os_id\":\"linux\",\"os_version\":\"ubuntu-20.04\",\"kernel\":\"5.4.0\",\"ip_addresses\":[\"192.168.1.1\"],\"agent_version\":\"1.0.0\"},\"packages\":[],\"cis_results\":[]}"
+}

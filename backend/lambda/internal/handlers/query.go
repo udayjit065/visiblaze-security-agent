@@ -28,8 +28,8 @@ func attrStringSlice(attr types.AttributeValue) []string {
 	return []string{}
 }
 
-func HostsListHandler(ctx context.Context, req events.APIGatewayProxyRequest,
-	client *dynamodb.Client, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func HostsListHandler(ctx context.Context, req events.APIGatewayV2HTTPRequest,
+	client *dynamodb.Client, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 
 	out, _ := client.Scan(ctx, &dynamodb.ScanInput{
 		TableName: str("vis_hosts"),
@@ -51,15 +51,15 @@ func HostsListHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 	}
 
 	body, _ := json.Marshal(map[string]interface{}{"hosts": hosts})
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       string(body),
 	}, nil
 }
 
-func HostDetailHandler(ctx context.Context, req events.APIGatewayProxyRequest,
-	client *dynamodb.Client, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func HostDetailHandler(ctx context.Context, req events.APIGatewayV2HTTPRequest,
+	client *dynamodb.Client, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 
 	hostID := req.PathParameters["hostId"]
 
@@ -70,7 +70,7 @@ func HostDetailHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 		},
 	})
 	if err != nil || hostOut.Item == nil {
-		return events.APIGatewayProxyResponse{
+		return events.APIGatewayV2HTTPResponse{
 			StatusCode: 404,
 			Headers:    headers,
 			Body:       `{"error":"host not found"}`,
@@ -138,15 +138,15 @@ func HostDetailHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 		"cis_results": cis,
 		"packages":    packages,
 	})
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       string(body),
 	}, nil
 }
 
-func PackagesHandler(ctx context.Context, req events.APIGatewayProxyRequest,
-	client *dynamodb.Client, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func PackagesHandler(ctx context.Context, req events.APIGatewayV2HTTPRequest,
+	client *dynamodb.Client, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 
 	out, _ := client.Scan(ctx, &dynamodb.ScanInput{
 		TableName: str("vis_packages"),
@@ -165,15 +165,15 @@ func PackagesHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 	}
 
 	body, _ := json.Marshal(map[string]interface{}{"packages": packages})
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       string(body),
 	}, nil
 }
 
-func CISResultsHandler(ctx context.Context, req events.APIGatewayProxyRequest,
-	client *dynamodb.Client, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func CISResultsHandler(ctx context.Context, req events.APIGatewayV2HTTPRequest,
+	client *dynamodb.Client, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 
 	out, _ := client.Scan(ctx, &dynamodb.ScanInput{
 		TableName: str("vis_cis_results"),
@@ -198,7 +198,7 @@ func CISResultsHandler(ctx context.Context, req events.APIGatewayProxyRequest,
 	}
 
 	body, _ := json.Marshal(map[string]interface{}{"cis_results": results})
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       string(body),

@@ -80,4 +80,10 @@ resource "aws_apigatewayv2_route" "cis_results" {
   target       = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
+resource "aws_apigatewayv2_route" "health" {
+  api_id       = aws_apigatewayv2_api.main.id
+  route_key    = "GET /health"
+  target       = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
 # API Key for agent auth

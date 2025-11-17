@@ -7,10 +7,10 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 )
 
-func HealthHandler(ctx context.Context, request events.APIGatewayProxyRequest, headers map[string]string) (events.APIGatewayProxyResponse, error) {
+func HealthHandler(ctx context.Context, request events.APIGatewayV2HTTPRequest, headers map[string]string) (events.APIGatewayV2HTTPResponse, error) {
 	body := `{"status":"ok","time":"` + time.Now().UTC().Format(time.RFC3339) + `"}`
 
-	return events.APIGatewayProxyResponse{
+	return events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       body,

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -23,7 +24,20 @@ func init() {
 	apiKey = os.Getenv("API_KEY")
 }
 
-func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func handler(ctx context.Context, request events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
+	// Debug logging
+	log.Printf("Request received: Method=%s, RawPath=%s, Path=%s", request.RequestContext.HTTP.Method, request.RawPath, request.RequestContext.HTTP.Path)
+
+	// Strip stage prefix from path for routing
+	path := request.RawPath
+	if stage := request.RequestContext.Stage; stage != "" && stage != "$default" {
+		stagePrefix := "/" + stage
+		if len(path) > len(stagePrefix) && path[:len(stagePrefix)] == stagePrefix {
+			path = path[len(stagePrefix):]
+		}
+	}
+	log.Printf("Stripped path: %s", path)
+
 	// CORS headers
 	headers := map[string]string{
 		"Content-Type":                 "application/json",
@@ -33,41 +47,47 @@ func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 	}
 
 	// Handle OPTIONS
-	if request.HTTPMethod == "OPTIONS" {
-		return events.APIGatewayProxyResponse{
+	if request.RequestContext.HTTP.Method == "OPTIONS" {
+		return events.APIGatewayV2HTTPResponse{
 			StatusCode: 200,
 			Headers:    headers,
 		}, nil
 	}
 
 	// Validate API key for write operations
-	if request.HTTPMethod == "POST" {
-		key := request.Headers["X-API-Key"]
+	if request.RequestContext.HTTP.Method == "POST" {
+		log.Printf("Validating API key for POST request")
+		log.Printf("Available headers: %v", request.Headers)
+		key := request.Headers["x-api-key"]
+		log.Printf("Received API key: %s", key)
+		log.Printf("Expected API key: %s", apiKey)
 		if key != apiKey {
-			return events.APIGatewayProxyResponse{
+			log.Printf("API key validation failed")
+			return events.APIGatewayV2HTTPResponse{
 				StatusCode: 401,
 				Headers:    headers,
 				Body:       `{"error":"Unauthorized"}`,
 			}, nil
 		}
+		log.Printf("API key validation passed")
 	}
 
 	// Route
 	switch {
-	case request.HTTPMethod == "POST" && (request.Path == "/ingest" || request.Path == "/ingest/"):
+	case request.RequestContext.HTTP.Method == "POST" && (path == "/ingest" || path == "/ingest/"):
 		return handlers.IngestHandler(ctx, request, dynamoClient, headers)
-	case request.HTTPMethod == "GET" && request.Path == "/hosts":
+	case request.RequestContext.HTTP.Method == "GET" && path == "/hosts":
 		return handlers.HostsListHandler(ctx, request, dynamoClient, headers)
-	case request.HTTPMethod == "GET" && request.PathParameters["hostId"] != "":
+	case request.RequestContext.HTTP.Method == "GET" && request.PathParameters["hostId"] != "":
 		return handlers.HostDetailHandler(ctx, request, dynamoClient, headers)
-	case request.HTTPMethod == "GET" && request.Path == "/apps":
+	case request.RequestContext.HTTP.Method == "GET" && path == "/apps":
 		return handlers.PackagesHandler(ctx, request, dynamoClient, headers)
-	case request.HTTPMethod == "GET" && request.Path == "/cis-results":
+	case request.RequestContext.HTTP.Method == "GET" && path == "/cis-results":
 		return handlers.CISResultsHandler(ctx, request, dynamoClient, headers)
-	case request.HTTPMethod == "GET" && request.Path == "/health":
+	case request.RequestContext.HTTP.Method == "GET" && path == "/health":
 		return handlers.HealthHandler(ctx, request, headers)
 	default:
-		return events.APIGatewayProxyResponse{
+		return events.APIGatewayV2HTTPResponse{
 			StatusCode: 404,
 			Headers:    headers,
 			Body:       `{"error":"Not found"}`,
